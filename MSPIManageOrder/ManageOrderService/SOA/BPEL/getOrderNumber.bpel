@@ -71,7 +71,7 @@
     <receive name="receiveInput" partnerLink="getordernumber_client" portType="client:getOrderNumber" operation="process" variable="inputVariable" createInstance="yes"/>
     <assign name="Assign1">
       <copy>
-        <from>sum($inputVariable.payload/client:num1, $inputVariable.payload/client:num2)</from>
+        <from>$inputVariable.payload/client:num1 + $inputVariable.payload/client:num2</from>
         <to>$outputVariable.payload/client:result</to>
       </copy>
     </assign>
