@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Generated from Oracle SOA Archetype version 12.1.3.0.0  -->
+<composite name="ManageOrderService"
+           revision="1.0-SNAPSHOT"
+           label="2013-10-14_14-36-17_928"
+           mode="active"
+           state="on"
+           xmlns="http://xmlns.oracle.com/sca/1.0"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy"
+           xmlns:orawsp="http://schemas.oracle.com/ws/2006/01/policy"
+           xmlns:ui="http://xmlns.oracle.com/soa/designer/"
+           xmlns:sca-ext="http://xmlns.oracle.com/sca/1.0-ext">
+  <import namespace="http://xmlns.oracle.com/MSPIManageOrder/ManageOrderService/getOrderNumber"
+          location="WSDLs/getOrderNumber.wsdl" importType="wsdl"/>
+  <service name="getordernumber_client_ep" ui:wsdlLocation="WSDLs/getOrderNumber.wsdl">
+    <interface.wsdl interface="http://xmlns.oracle.com/MSPIManageOrder/ManageOrderService/getOrderNumber#wsdl.interface(getOrderNumber)"/>
+    <binding.ws port="http://xmlns.oracle.com/MSPIManageOrder/ManageOrderService/getOrderNumber#wsdl.endpoint(getordernumber_client_ep/getOrderNumber_pt)"/>
+  </service>
+  <property name="productVersion" type="xs:string" many="false">12.1.3.0.0</property>
+  <component name="getOrderNumber" version="2.0">
+    <implementation.bpel src="BPEL/getOrderNumber.bpel"/>
+    <componentType>
+      <service name="getordernumber_client" ui:wsdlLocation="WSDLs/getOrderNumber.wsdl">
+        <interface.wsdl interface="http://xmlns.oracle.com/MSPIManageOrder/ManageOrderService/getOrderNumber#wsdl.interface(getOrderNumber)"/>
+      </service>
+    </componentType>
+    <property name="bpel.config.transaction" type="xs:string" many="false">required</property>
+  </component>
+  <wire>
+    <source.uri>getordernumber_client_ep</source.uri>
+    <target.uri>getOrderNumber/getordernumber_client</target.uri>
+  </wire>
+</composite>
